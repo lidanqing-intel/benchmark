@@ -233,6 +233,7 @@ int main(int argc, char *argv[]) {
   }
   config.SwitchSpecifyInputNames(true);
   config.EnableMemoryOptim();
+//  config.pass_builder()->DeletePass("reshape_transpose_scale_pass");
   if (FLAGS_use_int8) {
     std::cout << "---using int8---" << std::endl;
     config.pass_builder()->DeletePass("fc_fuse_pass");

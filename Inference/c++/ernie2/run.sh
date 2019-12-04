@@ -23,9 +23,9 @@ fi
 # MODEL_DIR=/data/mgallus/Sander/bert_app/float_model/
 # DATA_FILE=/data/mgallus/Sander/bert_app/100_ds
 
-MODEL_DIR=/data/mgallus/data/ernie_quant_int8/
+MODEL_DIR=/home/li/data/ernie_quant_int8/
 # MODEL_DIR=/data/mgallus/data/ernie_quant_fp32/
-DATA_FILE=/data/mgallus/data/1.8w.bs1
+DATA_FILE=/home/li/data/1.8w.bs1_100
 REPEAT=1
 
 if [ $# -ge 3 ]; then
@@ -46,15 +46,16 @@ if [ $# -ge 6 ]; then
   output_prediction=$6
 fi
 
+#cgdb --args ./build/inference --logtostderr \
 ./build/inference --logtostderr \
     --model_dir=${MODEL_DIR} \
     --data=${DATA_FILE} \
     --repeat=${REPEAT} \
     --use_gpu=${USE_GPU} \
     --num_threads=${num_threads} \
-    --profile=${profile} \
     --output_prediction=${output_prediction} \
     --use_int8=true \
-    # --debug \
+    --debug \
+    #--profile=${profile} \
     # --warmup_steps=1 \
     # --use_analysis=true \
